@@ -7,7 +7,7 @@ def database(record_to_insert):
     try:
         postgreSQL_pool = psycopg2.pool.SimpleConnectionPool(1, 20, user="postgres",
                                                   password="annawintour",
-                                                  host="172.20.10.14",
+                                                  host="192.168.50.80",
                                                   port = "5432",
                                                   database = "dbMeraki")
         if(postgreSQL_pool):
