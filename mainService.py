@@ -10,13 +10,23 @@ import GetLossandLatency as ll
 import GetDevicePerfomrmance as gp
 import GetDeviceClients as gdc
 import GetNetworkClient as nc
-import GetNetworkClientEvents as ge
 import GetNetworkClientLatency as gcl
 import GetNetworkClientPolicy as gcp
 import GetNetworkClientSplashAuthorStatus as gsas
 import GetNetworkClientTraffic as gct
 import GetNetworkClientUsage as gcu
 import GetOrganizationsAdmins as goa
+import GetNetworkAlert as gna
+import GetNetworkBluetoothClients as gbc
+import GetDeviceBluetoothSettings as gbs
+import GetNetworkBluetoothSettings as gnbs
+import GetOrganizationConfigTemplates as goct
+import GetNetworkHttpServers as gnhs
+import GetSwapNetworkWarmspare as gsnw
+import GetRadioSettings as grs
+import GetRfProfiles as grp
+import GetNetworkSmProfiles as gsp
+import GetOrganizationSnmp as snmp
 
 from flask import Flask, render_template, request, url_for, jsonify
 app = Flask(__name__)
@@ -135,15 +145,6 @@ def getnetworkclient():
     db.database(record_to_insert)
     return resp
 
-@app.route('/events')
-def getnetworkclientevents():
-    url = ge.url
-    resp = ge.requst_filter()
-    request_type = "network client events"
-    record_to_insert = (url, resp, request_type)
-    db.database(record_to_insert)
-    return resp
-
 @app.route('/latencyHistory')
 def getnetworkclientlatency():
     url = gcl.url
@@ -194,6 +195,105 @@ def getorganizationadmins():
     url = goa.url
     resp = goa.requst_filter()
     request_type = "organization admins"
+    record_to_insert = (url, resp, request_type)
+    db.database(record_to_insert)
+    return resp
+
+@app.route('/alerts')
+def getnetworkalert():
+    url = gna.url
+    resp = gna.requst_filter()
+    request_type = "network alert"
+    record_to_insert = (url, resp, request_type)
+    db.database(record_to_insert)
+    return resp
+
+@app.route('/bluetoothClients')
+def getnetworkbluetoothclients():
+    url = gbc.url
+    resp = gbc.requst_filter()
+    request_type = "bluetooth clients"
+    record_to_insert = (url, resp, request_type)
+    db.database(record_to_insert)
+    return resp
+
+@app.route('/dbluetoothSettings')
+def getdevicebluetoothsettings():
+    url = gbs.url
+    resp = gbs.requst_filter()
+    request_type = "device bluetooth settings"
+    record_to_insert = (url, resp, request_type)
+    db.database(record_to_insert)
+    return resp
+
+@app.route('/nbluetoothSettings')
+def getnetworkbluetoothsettings():
+    url = gnbs.url
+    resp = gnbs.requst_filter()
+    request_type = "network bluetooth settings"
+    record_to_insert = (url, resp, request_type)
+    db.database(record_to_insert)
+    return resp
+
+@app.route('/configTemplates')
+def getorgconfigtemp():
+    url = goct.url
+    resp = goct.requst_filter()
+    request_type = "config template"
+    record_to_insert = (url, resp, request_type)
+    db.database(record_to_insert)
+    return resp
+
+@app.route('/httpServers')
+def getnetworkhttpservers():
+    url = gnhs.url
+    resp = gnhs.requst_filter()
+    request_type = "http servers"
+    record_to_insert = (url, resp, request_type)
+    db.database(record_to_insert)
+    return resp
+
+@app.route('/warmSpareSettings')
+def getswapnetworkwarmspare():
+    url = gsnw.url
+    resp = gsnw.requst_filter()
+    request_type = "warmSpare settings"
+    record_to_insert = (url, resp, request_type)
+    db.database(record_to_insert)
+    return resp
+
+@app.route('/radioSettings')
+def getradiosettings():
+    url = grs.url
+    resp = grs.requst_filter()
+    request_type = "radio settings"
+    record_to_insert = (url, resp, request_type)
+    db.database(record_to_insert)
+    return resp
+
+@app.route('/rfProfiles')
+def getrfprofiles():
+    url = grp.url
+    resp = grp.requst_filter()
+    request_type = "Rf profiles"
+    record_to_insert = (url, resp, request_type)
+    db.database(record_to_insert)
+    return resp
+
+@app.route('/smProfiles')
+def getsmprofiles():
+    url = gsp.url
+    resp = gsp.requst_filter()
+    request_type = "Sm profiles"
+    record_to_insert = (url, resp, request_type)
+    db.database(record_to_insert)
+    return resp
+
+@app.route('/snmp')
+def getorganizationsnmp():
+    url = snmp.url
+    resp = snmp.requst_filter()
+    request_type = "organization snmp"
     record_to_insert = (url, resp, request_type)
     db.database(record_to_insert)
     return resp
